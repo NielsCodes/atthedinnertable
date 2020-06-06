@@ -1,7 +1,35 @@
+@import ../../vars
+
 #main-content
   max-width: 1200px
   margin: 0 auto
   display: flex
 
-  #topic-overview
+  #topic-list
     width: 50%
+    list-style-type: none
+    padding-right: 40px
+
+    li
+      font-size: 1.2em
+      padding: 10px 0
+      border-top: 1px solid rgba($gray, .5)
+      display: flex
+      justify-content: space-between
+      align-items: center
+      outline: none !important
+
+      i
+        opacity: 0
+        transition: opacity .2s ease
+        user-select: none
+
+      &:hover
+        cursor: pointer
+
+        i
+          opacity: 1
+
+      &:first-of-type
+        border: none
+        padding-top: 0

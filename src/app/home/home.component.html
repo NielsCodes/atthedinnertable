@@ -1,4 +1,11 @@
 <div id="main-content" *ngIf="(topics$ | async) !== null">
-  <app-topic-overview [topics$]="topics$" id="topic-overview"></app-topic-overview>
-  <app-topic-detail [topic$]="selectedTopic$" id="topic-detail"></app-topic-detail>
+
+  <ul id="topic-list">
+    <li class="topic-list-item" *ngFor="let topic of topics$ | async" [routerLink]="['/', topic.title]">
+      <span>{{ topic.title }}</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+    </li>
+  </ul>
+
+  <router-outlet></router-outlet>
 </div>

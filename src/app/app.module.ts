@@ -13,7 +13,6 @@ import { HeaderComponent } from './elements/header/header.component';
 import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
-import { TopicOverviewComponent } from './home/topic-overview/topic-overview.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
     FooterComponent,
     BmcComponent,
     TweetComponent,
-    TopicOverviewComponent,
     TopicDetailComponent,
   ],
   imports: [

@@ -11,6 +11,8 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { FooterComponent } from './elements/footer/footer.component';
+import { BmcComponent } from './elements/bmc/bmc.component';
+import { TweetComponent } from './elements/tweet/tweet.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FooterComponent } from './elements/footer/footer.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    BmcComponent,
+    TweetComponent,
   ],
   imports: [
     BrowserModule,

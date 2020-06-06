@@ -1,4 +1,4 @@
-Topics:
-<div class="topic" *ngFor="let topic of $topics | async">
-  {{topic.title}}
+<div id="main-content" *ngIf="(topics$ | async) !== null">
+  <app-topic-overview [topics$]="topics$" id="topic-overview"></app-topic-overview>
+  <app-topic-detail [topic$]="selectedTopic$" id="topic-detail"></app-topic-detail>
 </div>

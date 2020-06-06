@@ -4,8 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  // { path: 'topic/:title'} // TODO Add single topic component
+  { path: '', component: HomeComponent, children: [
+    { path: ':title', component: HomeComponent }
+  ]},
 ];
 
 @NgModule({

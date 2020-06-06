@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { Topic } from 'src/models/topic.model';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,9 @@ import { take } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  $topics: Observable<any[]>;
+  topics$: Observable<Topic[]>;
   constructor(af: AngularFirestore) {
-    this.$topics = af.collection('topics').valueChanges().pipe(take(1));
+    this.topics$ = af.collection<Topic>('topics').valueChanges().pipe(take(1));
   }
 
   ngOnInit(): void {

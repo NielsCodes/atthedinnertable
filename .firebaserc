@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "at-the-dinner-table": {
+      "hosting": {
+        "atTheDinnerTable": [
+          "at-the-dinner-table"
+        ]
+      }
+    }
+  }
+}

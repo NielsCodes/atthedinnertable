@@ -121,8 +121,16 @@
               "devServerTarget": "atTheDinnerTable:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "atTheDinnerTable"
+    }
+  },
+  "defaultProject": "atTheDinnerTable",
+  "cli": {
+    "analytics": "2972251e-b753-4e96-ad0f-0befc97ed9e4"
+  }
 }

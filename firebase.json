@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "atTheDinnerTable",
+      "public": "dist/atTheDinnerTable",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

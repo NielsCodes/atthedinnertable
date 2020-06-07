@@ -4,8 +4,7 @@
     {{ (topic$ | async)?.title }}
   </p>
 
-  <p>
-    {{ (topic$ | async)?.message }}
+  <p [innerHTML]="(topic$ | async)?.message | markdown">
   </p>
 
 </div>

@@ -12,7 +12,7 @@ export class TopicService {
   topics$: Observable<Topic[]>;
 
   constructor(private af: AngularFirestore) {
-    this.topics$ = this.af.collection<Topic>('topics').valueChanges().pipe(take(1), shareReplay(1));
+    this.topics$ = this.af.collection<Topic>('topics').valueChanges().pipe(shareReplay(1));
    }
 
   getTopics(): Observable<Topic[]> {

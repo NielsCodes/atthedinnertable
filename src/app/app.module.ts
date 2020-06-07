@@ -14,6 +14,7 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
+import { MarkdownPipe } from './pipes/markdown.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
     BmcComponent,
     TweetComponent,
     TopicDetailComponent,
+    MarkdownPipe,
   ],
   imports: [
     BrowserModule,

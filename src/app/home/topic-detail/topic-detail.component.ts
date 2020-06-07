@@ -26,7 +26,7 @@ export class TopicDetailComponent implements OnInit {
 
     this.topic$.subscribe(topic => {
       // Navigate to root if topic not found
-      if ( topic === undefined) {
+      if ( topic === undefined ) {
         this.router.navigate(['/']);
       }
     });

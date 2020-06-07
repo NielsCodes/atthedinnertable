@@ -15,7 +15,7 @@
     min-width: 40%
     list-style-type: none
     padding-right: 40px
-    transition: width .5s ease
+    // transition: width .5s ease
     overflow: hidden
 
     @media (screen and max-width: $res-s)
@@ -30,17 +30,24 @@
 
     li
       font-size: 1.2em
-      padding: 10px 0
-      border-top: 1px solid rgba($gray, .3)
+      padding: 10px
+      border-bottom: 1px solid rgba($gray, .3)
       display: flex
       justify-content: space-between
       align-items: center
       outline: none !important
 
+      &.highlight
+        font-weight: bold
+
+        i
+          opacity: 1 !important
+
       i
         opacity: 0
         transition: opacity .2s ease
         user-select: none
+        color: $yellow
 
       &:hover
         cursor: pointer
@@ -48,14 +55,13 @@
         i
           opacity: 1
 
-      &:first-of-type
+      &:last-of-type
         border: none
-        padding-top: 0
 
   #topic-details
     max-width: 60%
     width: 60%
-    transition: width .5s ease
+    // transition: width .5s ease
 
     @media (screen and max-width: $res-s)
       &.activated

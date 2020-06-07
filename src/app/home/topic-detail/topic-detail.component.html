@@ -1,6 +1,6 @@
-<div id="topic-data" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined">
-
-  <div id="topic-message" [innerHTML]="(topic$ | async)?.message | markdown"></div>
-
+<div id="topic-detail-controls" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined">
+  <i class="material-icons" id="back-btn" [routerLink]="['/']">arrow_back_ios</i>
+  <h1 id="title"> {{ (topic$ | async)?.title }} </h1>
 </div>
 
+<div id="topic-data" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined" [innerHTML]="(topic$ | async)?.message | markdown"></div>

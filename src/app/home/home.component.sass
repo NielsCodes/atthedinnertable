@@ -8,17 +8,19 @@
   max-width: 1200px
   margin: 100px auto
   display: flex
+  height: 100%
 
   #topic-list
-    // min-width: 40% !important
-    max-height: 400px
+    width: 40%
+    min-width: 40%
     list-style-type: none
     padding-right: 40px
+    transition: all .5s ease
 
     li
       font-size: 1.2em
       padding: 10px 0
-      border-top: 1px solid rgba($gray, .5)
+      border-top: 1px solid rgba($gray, .3)
       display: flex
       justify-content: space-between
       align-items: center
@@ -41,3 +43,6 @@
 
   #topic-details
     max-width: 60%
+    width: 60%
+    // width: 0 !important
+    // overflow: hidden

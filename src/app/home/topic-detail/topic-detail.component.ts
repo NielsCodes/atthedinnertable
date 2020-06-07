@@ -25,11 +25,12 @@ export class TopicDetailComponent implements OnInit {
     });
 
     this.topic$.subscribe(topic => {
-      // Redirect to root page if no topic by that name is found
-      if (topic === undefined) {
+      // Navigate to root if topic not found
+      if ( topic === undefined) {
         this.router.navigate(['/']);
       }
     });
+
   }
 
 }

@@ -1,11 +1,14 @@
-<div id="main-content" *ngIf="(topics$ | async) !== null">
+<div id="main-content" *ngIf="(topics$ | async) !== null" fxLayout>
 
-  <ul id="topic-list">
+  <ul id="topic-list" fxFlex="40%">
     <li class="topic-list-item" *ngFor="let topic of topics$ | async" [routerLink]="['/', topic.title]">
       <span>{{ topic.title }}</span>
       <i class="material-icons">keyboard_arrow_right</i>
     </li>
   </ul>
 
-  <router-outlet></router-outlet>
+  <div id="detail-output" fxFlex="60%">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+

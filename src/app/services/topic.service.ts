@@ -1,4 +1,4 @@
-import { take, map, shareReplay } from 'rxjs/operators';
+import { take, map, shareReplay, defaultIfEmpty } from 'rxjs/operators';
 import { Topic } from './../../models/topic.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
@@ -19,10 +19,10 @@ export class TopicService {
     return this.topics$;
   }
 
-  getTopic(title: string): Observable<Topic> {
+  getTopic(title: string): Observable<Topic | null> {
 
     return this.topics$.pipe(
-      map(topics => topics.find(topic => topic.title === title))
+      map(topics => topics.find(topic => topic.title === title)), defaultIfEmpty(null)
     );
 
   }

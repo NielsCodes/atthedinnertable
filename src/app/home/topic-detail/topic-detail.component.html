@@ -1,13 +1,6 @@
-<div id="topic-data" *ngIf="(topic$ | async) !== null">
+<div id="topic-data" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined">
 
-  <p>
-    {{ (topic$ | async)?.title }}
-  </p>
-
-  <p [innerHTML]="(topic$ | async)?.message | markdown">
-  </p>
+  <div id="topic-message" [innerHTML]="(topic$ | async)?.message | markdown"></div>
 
 </div>
 
-
-<!-- {{ topic.message | async }} -->

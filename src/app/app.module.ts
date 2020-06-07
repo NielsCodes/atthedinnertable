@@ -4,16 +4,24 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// AngularFire
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { environment } from '../environments/environment';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+// Components
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
+
+// Pipes
 import { MarkdownPipe } from './pipes/markdown.pipe';
 
 @NgModule({
@@ -32,7 +40,8 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAnalyticsModule
+    AngularFireAnalyticsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

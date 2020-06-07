@@ -1,7 +1,8 @@
+import { Title } from '@angular/platform-browser';
 import { TopicService } from './../services/topic.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take, filter, map } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Topic } from 'src/models/topic.model';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 
@@ -15,18 +16,37 @@ export class HomeComponent implements OnInit {
   topics$: Observable<Topic[]>;
   chosenTopic: Observable<Topic>;
 
-  constructor(private topicService: TopicService, private route: ActivatedRoute, private router: Router) {
+  defaultTitle = 'At The Dinner Table - Some discussions can\'t wait';
+
+  constructor(
+    private topicService: TopicService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private title: Title
+    ) {
     this.topics$ = this.topicService.getTopics();
   }
 
   ngOnInit(): void {
 
+    // On first load: check for title parameter
+    const routeChild = this.route.snapshot.firstChild;
+    if (routeChild === null) {
+      this.title.setTitle(this.defaultTitle);
+    } else {
+      const title = routeChild.params.title;
+      this.title.setTitle(title);
+    }
+
+    // Subsequent loads are subscribed to
     this.router.events.pipe(filter(event => event instanceof RoutesRecognized)).subscribe((event: RoutesRecognized) => {
-      console.log(event);
       const childRoute = event.state.root.firstChild.firstChild;
 
       if (childRoute !== null) {
-        console.log(event.state.root.firstChild.firstChild.params.title);
+        const title = childRoute.params.title;
+        this.title.setTitle(title);
+      } else {
+        this.title.setTitle(this.defaultTitle);
       }
 
     });

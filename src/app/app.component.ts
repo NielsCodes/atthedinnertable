@@ -1,28 +1,12 @@
-import { filter, map } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-
-import * as firebase from 'firebase/app';
-import 'firebase/performance';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor(
-    private title: Title,
-    private router: Router,
-    private route: ActivatedRoute
-    ) {}
+  constructor() {}
 
-  ngOnInit() {
-
-    // Initiate firebase performance monitoring
-    const perf = firebase.performance();
-
-  }
 }

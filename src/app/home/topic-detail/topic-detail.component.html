@@ -1,3 +1,14 @@
-No topic selected
+<div id="topic-data" *ngIf="(topic$ | async) !== null">
+
+  <p>
+    {{ (topic$ | async)?.title }}
+  </p>
+
+  <p>
+    {{ (topic$ | async)?.message }}
+  </p>
+
+</div>
+
 
 <!-- {{ topic.message | async }} -->

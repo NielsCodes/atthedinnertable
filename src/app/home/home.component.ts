@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   topics$: Observable<Topic[]>;
-  chosenTopic: Observable<Topic>;
+  topicChosen: boolean;
 
   defaultTitle = 'At The Dinner Table - Some discussions can\'t wait';
 
@@ -33,20 +33,24 @@ export class HomeComponent implements OnInit {
     const routeChild = this.route.snapshot.firstChild;
     if (routeChild === null) {
       this.title.setTitle(this.defaultTitle);
+      this.topicChosen = false;
     } else {
       const title = routeChild.params.title;
       this.title.setTitle(title);
+      this.topicChosen = true;
     }
 
     // Subsequent loads are subscribed to
     this.router.events.pipe(filter(event => event instanceof RoutesRecognized)).subscribe((event: RoutesRecognized) => {
       const childRoute = event.state.root.firstChild.firstChild;
 
-      if (childRoute !== null) {
+      if (childRoute === null) {
+        this.title.setTitle(this.defaultTitle);
+        this.topicChosen = false;
+      } else {
         const title = childRoute.params.title;
         this.title.setTitle(title);
-      } else {
-        this.title.setTitle(this.defaultTitle);
+        this.topicChosen = true;
       }
 
     });

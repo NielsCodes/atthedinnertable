@@ -11,8 +11,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 // Components
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
@@ -41,7 +39,6 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
-    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

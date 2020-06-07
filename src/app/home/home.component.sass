@@ -15,7 +15,18 @@
     min-width: 40%
     list-style-type: none
     padding-right: 40px
-    transition: all .5s ease
+    transition: width .5s ease
+    overflow: hidden
+
+    @media (screen and max-width: $res-s)
+      width: 100%
+      min-width: 100%
+      padding: 0
+
+      &.disabled
+        width: 0% !important
+        min-width: 0% !important
+        padding: 0
 
     li
       font-size: 1.2em
@@ -44,5 +55,11 @@
   #topic-details
     max-width: 60%
     width: 60%
-    // width: 0 !important
-    // overflow: hidden
+    transition: width .5s ease
+
+    @media (screen and max-width: $res-s)
+      &.activated
+        width: 100%
+        max-width: 100%
+
+

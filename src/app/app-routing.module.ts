@@ -7,6 +7,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
+  {
+    path: 'add', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
+  },
   { path: '', component: HomeComponent, children: [
     { path: ':title', component: TopicDetailComponent }
   ]},

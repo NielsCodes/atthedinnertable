@@ -20,11 +20,9 @@ export class TopicService {
   }
 
   getTopic(title: string): Observable<Topic | undefined> {
-
     return this.topics$.pipe(
       map(topics => topics.find(topic => topic.title === title)), defaultIfEmpty(undefined)
     );
-
   }
 
 }

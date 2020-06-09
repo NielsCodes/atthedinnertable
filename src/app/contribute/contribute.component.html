@@ -1,8 +1,16 @@
-<div id="page-container">
+<div id="main-content">
 
 
   <!-- List view of recently added resources -->
-  Overview
+  <ul id="contribution-list" [ngClass]="{'disabled': chosenContribution !== undefined}">
+    overview
+
+
+    <li class="topic-list-item" *ngFor="let topic of topics$ | async" [routerLink]="['/', topic.title]" [ngClass]="{'highlight': chosenTopic === topic.title}">
+      <span>{{ topic.title }}</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+    </li>
+  </ul>
 
 
 

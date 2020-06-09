@@ -23,6 +23,15 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
 // Pipes
 import { MarkdownPipe } from './pipes/markdown.pipe';
 
+// Quill editor -- needs to be registered in root module
+import { QuillModule } from 'ngx-quill';
+const quillConfig = {
+  modules: {
+    toolbar: [['bold', 'italic', 'underline']]
+  },
+  bounds: 'self'
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +49,8 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
-    AngularFirePerformanceModule
+    AngularFirePerformanceModule,
+    QuillModule.forRoot(quillConfig)
   ],
   providers: [
     PerformanceMonitoringService

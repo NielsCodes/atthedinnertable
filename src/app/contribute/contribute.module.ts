@@ -6,12 +6,14 @@ import { ContributeComponent } from './contribute.component';
 import { ContributeEditorComponent } from './contribute-editor/contribute-editor.component';
 import { ContributeDetailComponent } from './contribute-detail/contribute-detail.component';
 
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [ContributeComponent, ContributeEditorComponent, ContributeDetailComponent],
   imports: [
     CommonModule,
-    ContributeRoutingModule
+    ContributeRoutingModule,
+    QuillModule
   ]
 })
 export class ContributeModule { }

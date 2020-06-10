@@ -6,9 +6,17 @@
 
 #main-content
   max-width: 1200px
-  margin: 100px auto
-  display: flex
   height: 100%
+
+  h2
+    width: 40%
+    min-width: 40%
+    text-align: center
+    padding: 30px 0
+
+    @media (screen and max-width: $res-s)
+      width: 100%
+      min-width: 100%
 
   #topic-list
     width: 40%
@@ -30,33 +38,39 @@
 
     li
       font-size: 1.2em
-      padding: 10px
-      border-bottom: 1px solid rgba($gray, .3)
+      font-weight: $bold
+      padding: 15px 45px 15px 15px
+      border-top: 2px solid rgba($gray, .3)
       display: flex
       justify-content: space-between
       align-items: center
       outline: none !important
+      transition: all .2s ease
 
       &.highlight
-        font-weight: bold
+        font-weight: $bold
 
-        i
-          opacity: 1 !important
+
 
       i
-        opacity: 0
-        transition: opacity .2s ease
+
+        transition: color .2s ease
         user-select: none
         color: $yellow
+        position: absolute
+        right: 40px
+        font-size: 1.5em
 
       &:hover
         cursor: pointer
+        background-color: $darkgray
+        color: $yellow
 
         i
-          opacity: 1
+          color: white
 
-      &:last-of-type
-        border: none
+      // &:last-of-type
+      //   border: none
 
   #topic-details
     max-width: 60%

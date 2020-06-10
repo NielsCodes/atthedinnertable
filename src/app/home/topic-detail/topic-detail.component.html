@@ -4,3 +4,12 @@
 </div>
 
 <div id="topic-data" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined" [innerHTML]="(topic$ | async)?.message | markdown"></div>
+
+<div id="btn-container">
+  <div class="share-btn">
+    <a href="#">Share</a>
+  </div>
+  <div class="useful-btn">
+    <a href="#">Useful</a>
+  </div>
+</div>

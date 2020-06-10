@@ -5,7 +5,7 @@
   align-items: center
   padding: 20px 0
   margin-bottom: 20px
-  border-bottom: 1px solid rgba($gray, .3)
+  border-bottom: 2px solid rgba($gray, .3)
   position: sticky
   top: 0
   background: black
@@ -17,7 +17,7 @@
 
   #back-btn
     margin: 0 10px
-    color: $gray
+    color: $yellow
     transition: all .2s ease
     user-select: none
     outline: none !important
@@ -26,6 +26,18 @@
     &:hover
       color: #fff
       cursor: pointer
+
+#topic-title
+  margin-bottom: 20px
+
+  &::after
+    width: 50%
+    height: 4px
+    background-color: $yellow
+    margin: 10px auto
+    position: relative
+    content: ''
+    display: block
 
 #topic-data
   line-height: 1.6em

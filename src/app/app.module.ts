@@ -23,6 +23,9 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
 // Pipes
 import { MarkdownPipe } from './pipes/markdown.pipe';
 
+// Animations
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,8 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
-    AngularFirePerformanceModule
+    AngularFirePerformanceModule,
+    BrowserAnimationsModule
   ],
   providers: [
     PerformanceMonitoringService

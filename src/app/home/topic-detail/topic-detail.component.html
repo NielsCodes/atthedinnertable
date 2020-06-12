@@ -10,9 +10,15 @@
 <div id="topic-data" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined" [innerHTML]="(topic$ | async)?.message | markdown"></div>
 
 <div id="sources-toggle">
-  <div id="sources-toggle-btn" (click)="toggleSources()" ><i class="material-icons" id="source-icon">bookmark</i> View sources</div>
+  <div id="sources-toggle-btn" (click)="toggleSources('sources')" ><i class="material-icons" id="source-icon">bookmark</i> View sources</div>
 </div>
-<div id="sources-container" [hidden]="isShowSources">
+<div id="sources-container" [@slideInOut]="animationState" class="sources">
+  <div class="source">
+    <a href="" target="_blank"><i class="material-icons url-icon">link</i> Lorem ipsum dolor</a>
+  </div>
+  <div class="source">
+    <a href="" target="_blank"><i class="material-icons url-icon">link</i> Lorem ipsum dolor</a>
+  </div>
   <div class="source">
     <a href="" target="_blank"><i class="material-icons url-icon">link</i> Lorem ipsum dolor</a>
   </div>

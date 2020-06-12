@@ -4,12 +4,12 @@
   display: flex
   align-items: center
   padding: 20px 0
-  margin-bottom: 20px
   border-bottom: 2px solid rgba($gray, .3)
   position: sticky
   top: 0
   background: black
   display: none
+  z-index: 1
 
   @media (screen and max-width: $res-s)
     display: flex
@@ -28,7 +28,7 @@
       cursor: pointer
 
 #topic-title
-  margin-bottom: 20px
+  margin: 20px 0
 
   &::after
     width: 50%
@@ -43,13 +43,61 @@
   line-height: 1.6em
   font-weight: $regular
 
+#sources-toggle
+  display: flex
+  justify-content: center
+  margin-top: 30px
+
+  #sources-toggle-btn
+    color: $gray
+    text-decoration: none
+    font-weight: $bold
+    display: flex
+    align-items: center
+    transition: all .2s ease
+    cursor: pointer
+
+    i
+      padding-right: 3px
+
+    &:hover
+      color: white
+
+#sources-container
+  background-color: $darkgray
+  margin: 15px 0
+
+  .source
+    display: flex
+    border-bottom: 1px solid black
+
+    a
+      display: flex
+      padding: 15px
+      width: 100%
+      align-items: center
+      text-decoration: none
+      color: lighten($gray, 20%)
+      transition: all .2s ease
+      font-weight: $bold
+
+      &:hover
+        color: white
+        background: lighten($darkgray, 2%)
+
+      i
+        transform: rotate(-45deg)
+        padding-right: 3px
+
+
 #btn-container
   width: 100%
   background: black
   display: flex
   position: sticky
   bottom: 0
-  padding: 30px 0
+  padding: 15px 0
+  margin-top: 30px
 
   div
     width: 45%

@@ -14,7 +14,14 @@ export class TopicDetailComponent implements OnInit {
 
   topic$: Observable<Topic>;
 
+  isShowSources = true;
+
   constructor(private route: ActivatedRoute, private topicService: TopicService, private router: Router) { }
+
+  toggleSources(){
+    console.log('test');
+    this.isShowSources = !this.isShowSources;
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

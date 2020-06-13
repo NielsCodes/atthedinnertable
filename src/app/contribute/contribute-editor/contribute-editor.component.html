@@ -2,23 +2,62 @@
   You must login first
 </div>
 
+<br>
+<hr>
+<br>
 
 <div id="edit-section">
 
-  <!-- <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="form-group">
+
+    <!-- Select type of contribution -->
+    <mat-radio-group aria-label="What would you like to add?">
+      <mat-label>What type of resource would you like to add?</mat-label>
+      <mat-radio-button value="topic" formControlName="type">Topic</mat-radio-button>
+      <mat-radio-button value="resource" formControlName="type">Resource</mat-radio-button>
+    </mat-radio-group>
+
+
+    <!-- If resource, show dropdown of topics to which they  -->
+    <!-- If topic, show input field for topic name -->
+    <div id="type-option-container">
 
     </div>
 
 
-  </form> -->
-  <!-- Select which type of resource will be added -->
-  <input type="radio" value="topic" name="contributionType" ngModel> Topic
-  <input type="radio" value="information" name="contributionType" ngModel> Information
+    <!-- Show editor -->
+    <quill-editor #editor formControlName="editor"></quill-editor>
+
+
+    <!-- Source list -->
+    <div id="source-list-container">
+
+      <mat-label>Sources</mat-label>
+
+      <!-- TODO add ngFor -->
+      <div class="source-list-item">
+        <span class="source-content">https://google.com</span>
+        <div class="material-icons source-remove-btn">close</div>
+      </div>
+    </div>
+
+    <!-- Add source input -->
+    <div id="add-source-container">
+      <mat-form-field>
+        <input matInput placeholder="Add source">
+      </mat-form-field>
+      <button mat-icon-button color="primary">
+        <mat-icon>information</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary">Add source</button>
+    </div>
 
 
 
-  <quill-editor></quill-editor>
+    <!-- Submit form -->
+    <button mat-raised-button color="primary" type="submit">SUBMIT</button>
+
+  </form>
 
 </div>

@@ -25,6 +25,7 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
 
 // Quill editor -- needs to be registered in root module
 import { QuillModule } from 'ngx-quill';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const quillConfig = {
   modules: {
     toolbar: [['bold', 'italic', 'underline']]
@@ -50,7 +51,8 @@ const quillConfig = {
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
-    QuillModule.forRoot(quillConfig)
+    QuillModule.forRoot(quillConfig),
+    BrowserAnimationsModule
   ],
   providers: [
     PerformanceMonitoringService

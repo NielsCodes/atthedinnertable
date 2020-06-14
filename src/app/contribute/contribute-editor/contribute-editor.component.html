@@ -1,14 +1,6 @@
-<!-- <div id="login-section">
-  You must login first
-</div>
-
-<br>
-<hr>
-<br> -->
-
 <div id="edit-section">
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" (keydown.enter)="handleEnter($event)">
 
 
     <!-- Select type of contribution -->

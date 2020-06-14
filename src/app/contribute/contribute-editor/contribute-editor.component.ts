@@ -1,3 +1,4 @@
+import { ContributionService } from './../../services/contribution.service';
 import { TopicService } from './../../services/topic.service';
 import { Observable } from 'rxjs';
 import { TypeInfoComponent } from './../type-info/type-info.component';
@@ -6,6 +7,8 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { QuillEditorComponent } from 'ngx-quill';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Contribution } from 'src/models/contribution.model';
 
 @Component({
   selector: 'app-contribute-editor',
@@ -27,7 +30,9 @@ export class ContributeEditorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private topicService: TopicService
+    private topicService: TopicService,
+    public afAuth: AngularFireAuth,
+    private contributionService: ContributionService
   ) {
 
     // Create form
@@ -55,6 +60,10 @@ export class ContributeEditorComponent implements OnInit {
 
   }
 
+  handleEnter(event: Event) {
+    return false;
+  }
+
   // Show source info dialog
   openSourceDialog() {
     this.dialog.open(SourceInfoComponent, {
@@ -76,17 +85,13 @@ export class ContributeEditorComponent implements OnInit {
   // Add source to the list
   onAddSource() {
 
-    this.onSubmit();
-
-    const formRef = this.form.get('sourceInput');
-
-    const source = formRef.value;
-
+    const inputRef = this.form.get('sourceInput');
+    const source = inputRef.value;
     const validURL = this.checkURL(source);
 
     if (validURL) {
       this.sources.push(source);
-      formRef.reset();
+      inputRef.reset();
     }
 
   }
@@ -135,10 +140,35 @@ export class ContributeEditorComponent implements OnInit {
 
   }
 
+  async onSubmit() {
 
+    const type = this.form.get('type').value;
+    let topic: string;
 
-  onSubmit() {
-    console.log(this.form);
+    if (type === 'topic') {
+      topic = this.form.get('topicTitle').value;
+    } else if (type === 'resource') {
+      topic = this.form.get('topic').value;
+    } else {
+      return;
+    }
+
+    const content = this.form.get('editor').value;
+    const sources = this.sources;
+
+    const contribution: Contribution = {
+      type,
+      topic,
+      content,
+      sources
+    };
+
+    this.contributionService.createContribution(contribution)
+      .then(res => {
+        this.form.reset();
+        this.sources = [];
+      });
+
   }
 
 }

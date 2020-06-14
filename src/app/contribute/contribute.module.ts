@@ -11,6 +11,8 @@ import { SourceInfoComponent } from './source-info/source-info.component';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 // Angular Material
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
@@ -21,6 +23,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TypeInfoComponent } from './type-info/type-info.component';
 import { MatSelectModule } from '@angular/material/select';
+import { GoogleSigninDirective } from '../directives/google-signin.directive';
+import { TwitterSigninDirective } from '../directives/twitter-signin.directive';
+import { LoginComponent } from './login/login.component';
 
 const quillConfig = {
   modules: {
@@ -38,10 +43,14 @@ const quillConfig = {
     ContributeDetailComponent,
     SourceInfoComponent,
     TypeInfoComponent,
-    UrlPipe
+    UrlPipe,
+    GoogleSigninDirective,
+    TwitterSigninDirective,
+    LoginComponent,
   ],
   imports: [
     QuillModule.forRoot(quillConfig),
+    AngularFireAuthModule,
     CommonModule,
     ContributeRoutingModule,
     FormsModule,

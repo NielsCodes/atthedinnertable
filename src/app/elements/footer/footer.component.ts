@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public afAuth: AngularFireAuth,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onLogout() {
+    this.afAuth.signOut();
+
+    const url = this.router.url;
+    if (url === '/add/edit') {
+      this.router.navigate(['/add']);
+    }
+
   }
 
 }

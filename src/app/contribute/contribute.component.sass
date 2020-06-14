@@ -10,6 +10,9 @@
   display: flex
   height: 100%
 
+  @media (screen and max-width: $res-s)
+    display: block
+
   #contribution-list
     width: 40%
     min-width: 40%
@@ -17,7 +20,22 @@
     padding-right: 40px
     overflow: hidden
 
+    @media (screen and max-width: $res-s)
+      width: 100%
+      min-width: 100%
+      padding: 0
+
+      &.disabled
+        width: 0% !important
+        min-width: 0% !important
+        padding: 0
+
   #detail-section
     width: 60%
     height: 100%
+
+    @media (screen and max-width: $res-s)
+      width: 100%
+      min-width: 100%
+      padding: 0
 

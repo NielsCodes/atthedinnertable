@@ -65,9 +65,13 @@
     <!-- Source list -->
     <div id="source-list-container">
 
-      <div class="source-list-item" *ngFor="let source of sources">
+      <div class="source-list-item" *ngFor="let source of sources; let i = index">
         <span class="source-content" [matTooltip]="source">{{ source | url }}</span>
-        <div class="material-icons source-remove-btn" matTooltip="Remove source">close</div>
+        <div
+          class="material-icons source-remove-btn"
+          matTooltip="Remove source"
+          (click)="onRemoveSource(i)"
+          >close</div>
       </div>
     </div>
 
@@ -82,7 +86,7 @@
         mat-stroked-button
         color="primary"
         type="button"
-        [disabled]="form.get('sourceInput').value === '' || !form.get('sourceInput').valid"
+        [disabled]="form.get('sourceInput').value === '' || !form.get('sourceInput').valid || !form.get('sourceInput').dirty"
         (click)="onAddSource()"
       >Add source</button>
     </div>

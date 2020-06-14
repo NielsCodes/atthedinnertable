@@ -14,8 +14,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class ContributeEditorComponent implements OnInit {
 
-  private urlRegexp = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
-  private sources: string[] = [];
+  private urlRegex = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
+  public sources: string[] = [];
   public topics$: Observable<string[]>;
   public wordcount = 0;
 
@@ -36,7 +36,7 @@ export class ContributeEditorComponent implements OnInit {
       topic: new FormControl(''),
       topicTitle: new FormControl(''),
       editor: new FormControl('', [Validators.required, Validators.minLength(20)]),
-      sourceInput: new FormControl('', Validators.pattern(this.urlRegexp))
+      sourceInput: new FormControl('', Validators.pattern(this.urlRegex))
     });
 
     this.topics$ = this.topicService.getTopicTitles();
@@ -53,7 +53,6 @@ export class ContributeEditorComponent implements OnInit {
       this.wordcount = data.text.trim().length;
     });
 
-    console.log(this.form.get('topic').value);
   }
 
   // Show source info dialog
@@ -70,25 +69,34 @@ export class ContributeEditorComponent implements OnInit {
     });
   }
 
+  checkURL(url: string) {
+    return this.urlRegex.test(url);
+  }
+
   // Add source to the list
   onAddSource() {
+
+    this.onSubmit();
 
     const formRef = this.form.get('sourceInput');
 
     const source = formRef.value;
-    this.sources.push(source);
-    formRef.reset();
-    console.log(source);
 
+    const validURL = this.checkURL(source);
+
+    if (validURL) {
+      this.sources.push(source);
+      formRef.reset();
+    }
+
+  }
+
+  onRemoveSource(index: number) {
+    this.sources.splice(index, 1);
   }
 
 
   formValidator(): ValidatorFn {
-
-    // Type must be selected
-
-    // If topic, title must be present
-    // If resource, topic must be present
 
 
     return (group: FormGroup): ValidationErrors => {
@@ -121,16 +129,9 @@ export class ContributeEditorComponent implements OnInit {
         }
       }
 
-      // if (this.sources.length < 1) {
-      //   source.setErrors({ sourcesMissing: true });
-      // } else {
-      //   source.setErrors(null);
-      // }
-
       return;
 
     };
-
 
   }
 

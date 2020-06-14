@@ -9,6 +9,7 @@
 
 <div id="topic-data" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined" [innerHTML]="(topic$ | async)?.message | markdown"></div>
 
+
 <div id="sources-toggle">
   <div id="sources-toggle-btn" (click)="toggleSources('sources')" ><i class="material-icons" id="source-icon">bookmark</i> View sources</div>
 </div>
@@ -35,3 +36,12 @@
     <a href="#">Useful</a>
   </div>
 </div>
+
+<!-- <div class="useful-container">
+  <div class="useful-link">
+    <a href="">Useful</a>
+  </div>
+  <div class="sources-link">
+    <a href=""><i class="material-icons" id="source-icon">bookmark</i> View sources</a>
+  </div>
+</div> -->

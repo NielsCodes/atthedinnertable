@@ -1,3 +1,5 @@
+import { TopicService } from './../../services/topic.service';
+import { Observable } from 'rxjs';
 import { TypeInfoComponent } from './../type-info/type-info.component';
 import { SourceInfoComponent } from './../source-info/source-info.component';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
@@ -14,6 +16,7 @@ export class ContributeEditorComponent implements OnInit {
 
   private urlRegexp = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
   private sources: string[] = [];
+  public topics$: Observable<string[]>;
 
   form: FormGroup;
   @ViewChild('editor', {
@@ -21,8 +24,9 @@ export class ContributeEditorComponent implements OnInit {
   }) editor: QuillEditorComponent;
 
   constructor(
-    fb: FormBuilder,
-    private dialog: MatDialog
+    private fb: FormBuilder,
+    private dialog: MatDialog,
+    private topicService: TopicService
   ) {
 
     // Create form
@@ -31,6 +35,9 @@ export class ContributeEditorComponent implements OnInit {
       editor: new FormControl('Hello world', [Validators.required, Validators.minLength(20)]),
       sourceInput: new FormControl('', Validators.pattern(this.urlRegexp))
     });
+
+    this.topics$ = this.topicService.getTopicTitles();
+    this.topics$.subscribe(topics => console.log(topics));
 
   }
 

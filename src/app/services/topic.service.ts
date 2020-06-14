@@ -25,4 +25,10 @@ export class TopicService {
     );
   }
 
+  getTopicTitles(): Observable<string[]> {
+    return this.topics$.pipe(
+      map(topics => topics.map(topic => topic.title))
+    );
+  }
+
 }

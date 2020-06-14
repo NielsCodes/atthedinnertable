@@ -21,10 +21,12 @@
           matTooltip="What does this mean?"
           matTooltipPosition="after"
           (click)="openTypeDialog()"
+          type="button"
         >
           <mat-icon>information</mat-icon>
         </button>
       </div>
+
 
       <mat-radio-button value="topic" class="resource-type-selector">Topic</mat-radio-button>
       <mat-radio-button value="resource" class="resource-type-selector">Resource</mat-radio-button>
@@ -40,12 +42,12 @@
         <input matInput type="text" placeholder="Topic name">
       </mat-form-field>
 
-      <mat-form-field *ngIf="form.get('type').value === 'resource'">
+      <mat-form-field *ngIf="form.get('type').value === 'resource'" id="topic-selector">
 
         <mat-label>Pick a topic</mat-label>
 
         <mat-select>
-          <mat-option value="test">Test</mat-option>
+          <mat-option *ngFor="let topic of topics$ | async" [value]="topic">{{ topic }}</mat-option>
         </mat-select>
 
       </mat-form-field>
@@ -60,7 +62,6 @@
     <!-- Source list -->
     <div id="source-list-container">
 
-      <!-- TODO add ngFor -->
       <div class="source-list-item" *ngFor="let source of sources">
         <span class="source-content" [matTooltip]="source">{{ source | url }}</span>
         <div class="material-icons source-remove-btn" matTooltip="Remove source">close</div>
@@ -70,7 +71,7 @@
     <!-- Add source input -->
     <div id="add-source-container">
       <mat-form-field id="source-url-field">
-        <input matInput placeholder="Source URL" formControlName="sourceInput">
+        <input matInput placeholder="Source URL" formControlName="sourceInput" (keydown.enter)="onAddSource()">
       </mat-form-field>
       <!-- <button
         mat-icon-button

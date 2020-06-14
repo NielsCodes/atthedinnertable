@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   firebase: {
     apiKey: 'AIzaSyAiB05WSJkjrrx8d28OiiFwQkhFW4_FmjM',
-    authDomain: 'at-the-dinner-table.firebaseapp.com',
+    authDomain: 'atthedinnertable.co',
     databaseURL: 'https://at-the-dinner-table.firebaseio.com',
     projectId: 'at-the-dinner-table',
     storageBucket: 'at-the-dinner-table.appspot.com',

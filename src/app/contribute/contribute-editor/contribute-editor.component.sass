@@ -1,0 +1,73 @@
+@import ../../../vars
+@import 'https://cdn.quilljs.com/1.3.6/quill.snow.css'
+
+
+#edit-section
+
+  #resource-type-selector-container
+    display: flex
+    flex-direction: column
+
+    #resource-type-selector-header
+      display: flex
+      align-items: center
+
+    .resource-type-selector
+      margin: 10px 0
+
+  #type-option-container
+    margin: 20px 0
+
+    #topic-input
+      min-width: 300px
+
+    #topic-selector
+      min-width: 300px
+
+
+  // TODO: fix multiple items stretching form container
+  #source-list-container
+    margin: 40px 0
+    display: flex
+    align-items: flex-start
+
+    .source-list-item
+      display: flex
+      // align-items: center
+      justify-content: space-between
+      padding: 8px 12px
+      // border: 1px solid $yellow
+      background: $yellow
+      color: #000
+      font-size: .8em
+      font-weight: bold
+      margin-right: 10px
+
+      span
+        user-select: none
+
+      .source-remove-btn
+        margin-left: 10px
+        margin-top: 2px
+        font-size: 1.4em
+        cursor: pointer
+
+  #editor-wrapper
+    #editor-wordcount
+      margin-top: 5px
+      color: rgba(#fff,.7)
+      font-size: .9em
+      font-weight: bold
+
+      &.invalid-count
+        color: #ff4c4c
+
+  #submit-btn
+    margin-top: 40px
+
+  #source-url-field
+    min-width: 300px
+    margin-right: 20px
+
+  #source-info-hint
+    cursor: pointer

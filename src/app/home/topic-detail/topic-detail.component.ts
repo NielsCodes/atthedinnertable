@@ -5,16 +5,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Topic } from 'src/models/topic.model';
 import { Observable } from 'rxjs';
 
+import { sourcesAnimation } from '../../animations/sourcesAnimation';
+
 @Component({
   selector: 'app-topic-detail',
   templateUrl: './topic-detail.component.html',
-  styleUrls: ['./topic-detail.component.sass']
+  styleUrls: ['./topic-detail.component.sass'],
+  animations: [sourcesAnimation]
 })
 export class TopicDetailComponent implements OnInit {
 
   topic$: Observable<Topic>;
 
+  animationState = 'out';
+
+  // isShowSources = true;
+
   constructor(private route: ActivatedRoute, private topicService: TopicService, private router: Router) { }
+
+  toggleSources(divName: string) {
+    if (divName === 'sources') {
+      this.animationState = this.animationState === 'out' ? 'in' : 'out';
+    }
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

@@ -6,17 +6,20 @@ a
 
 footer
   display: flex
-  max-width: 1200px
   margin: 0 auto
+  padding: 30px
   align-items: center
   justify-content: space-between
 
+  background-color: $darkgray
+
   @media (screen and max-width: $res-s)
     flex-direction: column
-    align-items: start
+    align-items: center
+    text-align: center
 
     .footer-column
-      margin-top: 40px
+      margin-top: 30px
 
     &:first-of-type
       margin-top: 0
@@ -30,6 +33,9 @@ footer
     a
       color: $gray
       cursor: pointer
+      font-weight: $bold
+      padding: 5px 0
+
 
       &:hover
         color: #fff
@@ -43,11 +49,13 @@ footer
         color: $yellow
 
     #blm
-      font-size: 2em
-      font-weight: bold
+      font-size: 1.7em
+      font-weight: $extrabold
 
     #blm-subtext
       color: $yellow
+      font-size: 1.1em
+      font-weight: $bold
 
   #col-2
     #missing-something-header

@@ -1,6 +1,9 @@
 <div id="main-content" *ngIf="(topics$ | async) !== null">
 
+
+
   <ul id="topic-list" [ngClass]="{'disabled': chosenTopic !== undefined}">
+    <h2>Browse topics</h2>
     <li class="topic-list-item" *ngFor="let topic of topics$ | async" [routerLink]="['/', topic.title]" [ngClass]="{'highlight': chosenTopic === topic.title}">
       <span>{{ topic.title }}</span>
       <i class="material-icons">keyboard_arrow_right</i>

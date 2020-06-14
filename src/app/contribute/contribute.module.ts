@@ -26,7 +26,9 @@ const quillConfig = {
   modules: {
     toolbar: [['bold', 'italic', 'underline']]
   },
-  bounds: 'self'
+  bounds: 'self',
+  minLength: 20,
+  maxLength: 1000
 };
 
 @NgModule({

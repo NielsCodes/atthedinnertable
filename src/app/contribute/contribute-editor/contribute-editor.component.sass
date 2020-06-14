@@ -18,12 +18,14 @@
   #type-option-container
     margin: 20px 0
 
+    #topic-input
+      min-width: 300px
+
     #topic-selector
       min-width: 300px
 
-  #quill-editor .ql-editor
-    background: pink !important
 
+  // TODO: fix multiple items stretching form container
   #source-list-container
     margin: 40px 0
     display: flex
@@ -50,9 +52,22 @@
         font-size: 1.4em
         cursor: pointer
 
+  #editor-wrapper
+    #editor-wordcount
+      margin-top: 5px
+      color: rgba(#fff,.7)
+      font-size: .9em
+      font-weight: bold
+
+      &.invalid-count
+        color: #ff4c4c
+
   #submit-btn
     margin-top: 40px
 
-#source-url-field
-  min-width: 300px
-  margin-right: 20px
+  #source-url-field
+    min-width: 300px
+    margin-right: 20px
+
+  #source-info-hint
+    cursor: pointer

@@ -38,15 +38,15 @@
     <!-- If topic, show input field for topic name -->
     <div id="type-option-container">
 
-      <mat-form-field *ngIf="form.get('type').value === 'topic'">
-        <input matInput type="text" placeholder="Topic name">
+      <mat-form-field *ngIf="form.get('type').value === 'topic'" id="topic-input">
+        <input matInput type="text" placeholder="Topic name" formControlName="topicTitle">
       </mat-form-field>
 
       <mat-form-field *ngIf="form.get('type').value === 'resource'" id="topic-selector">
 
         <mat-label>Pick a topic</mat-label>
 
-        <mat-select>
+        <mat-select formControlName="topic">
           <mat-option *ngFor="let topic of topics$ | async" [value]="topic">{{ topic }}</mat-option>
         </mat-select>
 
@@ -56,7 +56,10 @@
 
 
     <!-- Show editor -->
-    <quill-editor #editor formControlName="editor" id="quill-editor" theme="snow"></quill-editor>
+    <div id="editor-wrapper">
+      <quill-editor #editor formControlName="editor" id="quill-editor" theme="snow"></quill-editor>
+      <div id="editor-wordcount" [ngClass]="{'invalid-count': (wordcount < 20 || wordcount > 100) && wordcount > 0}">{{ wordcount }}/1000</div>
+    </div>
 
 
     <!-- Source list -->
@@ -72,16 +75,9 @@
     <div id="add-source-container">
       <mat-form-field id="source-url-field">
         <input matInput placeholder="Source URL" formControlName="sourceInput" (keydown.enter)="onAddSource()">
+        <mat-hint (click)="openSourceDialog()" id="source-info-hint">Why do we ask for sources?</mat-hint>
       </mat-form-field>
-      <!-- <button
-        mat-icon-button
-        color="primary"
-        (click)="openSourceDialog()"
-        matTooltip="Why do we ask for sources?"
-        matTooltipPosition="below">
-        <mat-icon>information</mat-icon>
-      </button>
-      <br> -->
+
       <button
         mat-stroked-button
         color="primary"
@@ -91,10 +87,8 @@
       >Add source</button>
     </div>
 
-
-
     <!-- Submit form -->
-    <button mat-raised-button color="primary" type="submit" id="submit-btn">SUBMIT {{ form.get('type').value | uppercase }}</button>
+    <button mat-raised-button color="primary" type="submit" id="submit-btn" [disabled]="!form.valid || sources.length < 1">SUBMIT {{ form.get('type').value | uppercase }}</button>
 
   </form>
 

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { TypeInfoComponent } from './../type-info/type-info.component';
 import { SourceInfoComponent } from './../source-info/source-info.component';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { QuillEditorComponent } from 'ngx-quill';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -17,6 +17,7 @@ export class ContributeEditorComponent implements OnInit {
   private urlRegexp = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
   private sources: string[] = [];
   public topics$: Observable<string[]>;
+  public wordcount = 0;
 
   form: FormGroup;
   @ViewChild('editor', {
@@ -32,17 +33,28 @@ export class ContributeEditorComponent implements OnInit {
     // Create form
     this.form = fb.group({
       type: new FormControl('resource', Validators.required),
-      editor: new FormControl('Hello world', [Validators.required, Validators.minLength(20)]),
+      topic: new FormControl(''),
+      topicTitle: new FormControl(''),
+      editor: new FormControl('', [Validators.required, Validators.minLength(20)]),
       sourceInput: new FormControl('', Validators.pattern(this.urlRegexp))
     });
 
     this.topics$ = this.topicService.getTopicTitles();
-    this.topics$.subscribe(topics => console.log(topics));
+
+    this.form.setValidators(this.formValidator());
 
   }
 
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+    // Keep track of wordcount
+    this.editor.onContentChanged.subscribe(data => {
+      this.wordcount = data.text.trim().length;
+    });
+
+    console.log(this.form.get('topic').value);
+  }
 
   // Show source info dialog
   openSourceDialog() {
@@ -70,8 +82,62 @@ export class ContributeEditorComponent implements OnInit {
 
   }
 
+
+  formValidator(): ValidatorFn {
+
+    // Type must be selected
+
+    // If topic, title must be present
+    // If resource, topic must be present
+
+
+    return (group: FormGroup): ValidationErrors => {
+
+      // Get formControls
+      const type = group.get('type');
+      const topicTitle = group.get('topicTitle');
+      const topic = group.get('topic');
+      const editor = group.get('editor');
+      const source = group.get('sourceInput');
+
+
+      // Set error if wordcount not between 20 and 1000
+      if (this.wordcount < 20) {
+        editor.setErrors({ textTooShort: true });
+      } else if (this.wordcount > 1000) {
+        editor.setErrors({ textTooLong: true });
+      }
+
+      // Check topic selection / title
+      if (type.value === 'topic') {
+        if (topicTitle.value === '') {
+          topicTitle.setErrors({ titleMissing: true });
+          topic.setErrors(null);
+        }
+      } else if (type.value === 'resource') {
+        if (topic.value === '') {
+          topic.setErrors({ topicMissing: true });
+          topicTitle.setErrors(null);
+        }
+      }
+
+      // if (this.sources.length < 1) {
+      //   source.setErrors({ sourcesMissing: true });
+      // } else {
+      //   source.setErrors(null);
+      // }
+
+      return;
+
+    };
+
+
+  }
+
+
+
   onSubmit() {
-    console.log('Form submitted');
+    console.log(this.form);
   }
 
 }

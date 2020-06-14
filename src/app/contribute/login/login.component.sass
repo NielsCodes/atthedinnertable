@@ -1,14 +1,50 @@
-#google-btn
-  background-color: #4285F4
-  font-family: 'Roboto', sans-serif
-  border: none
-  padding: 8px
-  color: white
+@import ../../../vars
 
-  &::before
-    content: ''
-    width: 18px
-    height: 18px
-    position: relative
-    margin-right: 24px
+
+#login-section
+
+  #login-title
+    margin: 20px 0
+
+    &::after
+      width: 50%
+      height: 4px
+      background-color: $yellow
+      margin: 10px auto
+      position: relative
+      content: ''
+      display: block
+
+  #google-btn, #twitter-btn
     background-color: white
+    font-family: "Montserrat", sans-serif
+    border: none
+    padding: 15px 30px
+    color: black
+    font-size: 1em
+    font-weight: 700
+    margin: 2.5%
+    transition: all 0.2s ease
+    cursor: pointer
+    width: 45%
+
+    @media (screen and max-width: 650px)
+      width: 95%
+
+    &:hover
+      background-color: darken(white, 15%)
+
+    &:before
+      content: ''
+      width: 18px
+      height: 18px
+      position: relative
+      padding-right: 30px
+      background-repeat: no-repeat
+
+  #google-btn::before
+    background-image: url('src/assets/google.svg')
+
+  #twitter-btn::before
+    background-image: url('src/assets/twitter.svg')
+

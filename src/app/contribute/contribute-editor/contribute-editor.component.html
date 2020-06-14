@@ -50,7 +50,7 @@
     <!-- Show editor -->
     <div id="editor-wrapper">
       <quill-editor #editor formControlName="editor" id="quill-editor" theme="snow"></quill-editor>
-      <div id="editor-wordcount" [ngClass]="{'invalid-count': (wordcount < 20 || wordcount > 100) && wordcount > 0}">{{ wordcount }}/1000</div>
+      <div id="editor-wordcount" [ngClass]="{'invalid-count': (wordcount < 20 || wordcount > 1000) && wordcount > 0}">{{ wordcount }}/1000</div>
     </div>
 
 

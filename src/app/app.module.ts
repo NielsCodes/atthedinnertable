@@ -12,6 +12,12 @@ import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@ang
 
 import { environment } from '../environments/environment';
 
+// Pipes
+import { MarkdownPipe } from './pipes/markdown.pipe';
+
+// Quill editor -- needs to be registered in root module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // Components
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
@@ -19,19 +25,7 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
-
-// Pipes
-import { MarkdownPipe } from './pipes/markdown.pipe';
-
-// Quill editor -- needs to be registered in root module
-import { QuillModule } from 'ngx-quill';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-const quillConfig = {
-  modules: {
-    toolbar: [['bold', 'italic', 'underline']]
-  },
-  bounds: 'self'
-};
+import { UrlPipe } from './pipes/url.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +45,6 @@ const quillConfig = {
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
-    QuillModule.forRoot(quillConfig),
     BrowserAnimationsModule
   ],
   providers: [

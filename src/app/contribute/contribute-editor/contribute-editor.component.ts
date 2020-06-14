@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { TypeInfoComponent } from './../type-info/type-info.component';
+import { SourceInfoComponent } from './../source-info/source-info.component';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { QuillEditorComponent } from 'ngx-quill';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contribute-editor',
@@ -9,24 +12,54 @@ import { QuillEditorComponent } from 'ngx-quill';
 })
 export class ContributeEditorComponent implements OnInit {
 
+  private urlRegexp = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
+  private sources: string[] = [];
+
   form: FormGroup;
   @ViewChild('editor', {
     static: true
   }) editor: QuillEditorComponent;
 
-  constructor(fb: FormBuilder) {
+  constructor(
+    fb: FormBuilder,
+    private dialog: MatDialog
+  ) {
+
+    // Create form
     this.form = fb.group({
-      type: new FormControl('topic', Validators.required),
+      type: new FormControl('resource', Validators.required),
       editor: new FormControl('Hello world', [Validators.required, Validators.minLength(20)]),
-      sources: new FormArray([
-        new FormControl('', Validators.required)
-      ])
+      sourceInput: new FormControl('', Validators.pattern(this.urlRegexp))
+    });
+
+  }
+
+
+  ngOnInit(): void { }
+
+  // Show source info dialog
+  openSourceDialog() {
+    this.dialog.open(SourceInfoComponent, {
+      width: '400px'
     });
   }
 
-  ngOnInit(): void {
+  // Show type info dialog
+  openTypeDialog() {
+    this.dialog.open(TypeInfoComponent, {
+      width: '400px'
+    });
+  }
 
-    this.editor.onContentChanged.subscribe(d => console.log(d));
+  // Add source to the list
+  onAddSource() {
+
+    const formRef = this.form.get('sourceInput');
+
+    const source = formRef.value;
+    this.sources.push(source);
+    formRef.reset();
+    console.log(source);
 
   }
 
@@ -35,3 +68,4 @@ export class ContributeEditorComponent implements OnInit {
   }
 
 }
+

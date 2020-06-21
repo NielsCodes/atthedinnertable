@@ -15,7 +15,9 @@ export class TopicService {
   topics$: Observable<Topic[]>;
 
   constructor(private af: AngularFirestore) {
-    this.topics$ = this.af.collection<Topic>('topics').valueChanges({ idField: 'id' }).pipe(shareReplay(1));
+    this.topics$ = this.af.collection<Topic>('topics', ref => ref.orderBy('votes', 'desc'))
+    .valueChanges({ idField: 'id' })
+    .pipe(shareReplay(1));
    }
 
   getTopics(): Observable<Topic[]> {

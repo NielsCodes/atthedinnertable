@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
     this.afAuth.authState.subscribe(state => {
       if (state !== null) {
-        this.router.navigate(['/add/edit']);
+        this.router.navigate(['/contribute/edit']);
       }
     });
 

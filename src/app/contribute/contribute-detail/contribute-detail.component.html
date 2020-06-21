@@ -4,3 +4,7 @@
 <p [innerHTML]="(contribution$ | async)?.content | contributionMarkdown"></p>
 <p>Sources:</p>
 <p *ngFor="let source of (contribution$ | async)?.sources">{{ source }}</p>
+
+<div *ngIf="(contribution$ | async) as contribution">
+  <button (click)="onVote(contribution.id)">VOTE!</button>
+</div>

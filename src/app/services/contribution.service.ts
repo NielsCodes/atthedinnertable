@@ -5,6 +5,9 @@ import { Contribution } from 'src/models/contribution.model';
 import { shareReplay, defaultIfEmpty, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import * as sharded from '../../libraries/sharded-counter';
+import * as firebase from 'firebase';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,6 +47,13 @@ export class ContributionService {
       createdAt: new Date(),
       votes: 0
     });
+  }
+
+  submitVote(id: string) {
+    const docRef = firebase.firestore().doc(`contributions/${id}`);
+
+    const visits = new sharded.Counter(docRef, 'votes');
+    visits.incrementBy(1);
   }
 
 }

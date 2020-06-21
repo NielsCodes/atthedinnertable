@@ -53,9 +53,7 @@ export class TopicDetailComponent implements OnInit {
   }
 
   onVote(id: string) {
-
     this.topicService.submitVote(id);
-
   }
 
 }

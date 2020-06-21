@@ -28,12 +28,15 @@ export class ContributeDetailComponent implements OnInit {
 
     // Redirect to contribution overview if no contribution found with this ID
     this.contribution$.subscribe(contribution => {
-      console.log(contribution);
       if (contribution === undefined) {
         this.router.navigate(['/contribute']);
       }
     });
 
+  }
+
+  onVote(id: string) {
+    this.contributionService.submitVote(id);
   }
 
 }

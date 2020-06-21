@@ -21,7 +21,11 @@ export class TopicDetailComponent implements OnInit {
 
   // isShowSources = true;
 
-  constructor(private route: ActivatedRoute, private topicService: TopicService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private topicService: TopicService,
+    private router: Router
+  ) { }
 
   toggleSources(divName: string) {
     if (divName === 'sources') {
@@ -39,7 +43,7 @@ export class TopicDetailComponent implements OnInit {
 
     this.topic$.subscribe(topic => {
       // Navigate to root if topic not found
-      if ( topic === undefined ) {
+      if (topic === undefined) {
         this.router.navigate(['/']);
       }
     });

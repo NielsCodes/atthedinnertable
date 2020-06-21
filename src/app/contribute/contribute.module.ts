@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { GoogleSigninDirective } from '../directives/google-signin.directive';
 import { TwitterSigninDirective } from '../directives/twitter-signin.directive';
 import { LoginComponent } from './login/login.component';
+import { ContributionMarkdownPipe } from '../pipes/contribution-markdown.pipe';
 
 const quillConfig = {
   modules: {
@@ -48,7 +49,8 @@ const quillConfig = {
     GoogleSigninDirective,
     TwitterSigninDirective,
     LoginComponent,
-    SanitizeMarkdownPipe
+    SanitizeMarkdownPipe,
+    ContributionMarkdownPipe
   ],
   imports: [
     QuillModule.forRoot(quillConfig),
@@ -65,7 +67,7 @@ const quillConfig = {
     MatIconModule,
     MatDialogModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   entryComponents: []
 })

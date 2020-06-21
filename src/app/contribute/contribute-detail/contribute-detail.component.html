@@ -1,1 +1,6 @@
-<p>contribute-detail works!</p>
+<p>Type: {{ (contribution$ | async)?.type }}</p>
+<p>Topic: {{ (contribution$ | async)?.topic }}</p>
+<p>Content:</p>
+<p [innerHTML]="(contribution$ | async)?.content | contributionMarkdown"></p>
+<p>Sources:</p>
+<p *ngFor="let source of (contribution$ | async)?.sources">{{ source }}</p>

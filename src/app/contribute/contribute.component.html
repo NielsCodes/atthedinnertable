@@ -5,12 +5,12 @@
     <li
       class="topic-list-item"
       *ngFor="let contribution of contributions$ | async"
-      [routerLink]="['/', contribution.id]"
+      [routerLink]="['/contribute', contribution.id]"
     >
       <h4 class="contribution-type">{{ contribution.type }}</h4>
       <h3 class="contribution-topic">{{ contribution.topic }}</h3>
       <h3 class="contribution-topic">
-        {{ contribution.content | sanitizeMarkdown }}
+        {{ (contribution.content | sanitizeMarkdown | slice: 0:24) + "..." }}
       </h3>
 
       <!-- <i class="material-icons">keyboard_arrow_right</i> -->
@@ -19,7 +19,6 @@
 
   <!-- Router outlet -->
   <!-- Shows either the selected resource or the editor/login page -->
-
   <div id="detail-section">
     <router-outlet></router-outlet>
   </div>

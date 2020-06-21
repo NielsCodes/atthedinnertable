@@ -1,4 +1,8 @@
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ContributionService } from 'src/app/services/contribution.service';
+import { Contribution } from 'src/models/contribution.model';
 
 @Component({
   selector: 'app-contribute-detail',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContributeDetailComponent implements OnInit {
 
-  constructor() { }
+  contribution$: Observable<Contribution>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private contributionService: ContributionService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.contribution$ = this.contributionService.getContribution(id);
+    });
+
+    // Redirect to contribution overview if no contribution found with this ID
+    this.contribution$.subscribe(contribution => {
+      console.log(contribution);
+      if (contribution === undefined) {
+        this.router.navigate(['/contribute']);
+      }
+    });
+
   }
 
 }

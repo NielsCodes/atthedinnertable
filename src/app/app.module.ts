@@ -1,3 +1,4 @@
+import { MarkdownPipe } from './pipes/markdown.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,9 +13,6 @@ import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@ang
 
 import { environment } from '../environments/environment';
 
-// Pipes
-import { MarkdownPipe } from './pipes/markdown.pipe';
-
 // Quill editor -- needs to be registered in root module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,6 +23,7 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
+import { ContributionMarkdownPipe } from './pipes/contribution-markdown.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,7 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
     AngularFirestoreModule,
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     PerformanceMonitoringService

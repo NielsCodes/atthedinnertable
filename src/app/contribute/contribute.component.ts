@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
+import { ContributionService } from './../services/contribution.service';
 import { Component, OnInit } from '@angular/core';
+import { Contribution } from 'src/models/contribution.model';
 
 @Component({
   selector: 'app-contribute',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContributeComponent implements OnInit {
 
-  constructor() { }
+  contributions$: Observable<Contribution[]>;
+
+  constructor(
+    private contributionService: ContributionService
+  ) {
+    this.contributions$ = this.contributionService.getContributions();
+  }
 
   ngOnInit(): void {
   }

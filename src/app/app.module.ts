@@ -35,7 +35,7 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
     BmcComponent,
     TweetComponent,
     TopicDetailComponent,
-    MarkdownPipe
+    MarkdownPipe,
   ],
   imports: [
     BrowserModule,

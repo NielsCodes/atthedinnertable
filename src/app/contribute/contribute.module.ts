@@ -1,3 +1,4 @@
+import { SanitizeMarkdownPipe } from './../pipes/sanitize-markdown.pipe';
 import { UrlPipe } from './../pipes/url.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -47,6 +48,7 @@ const quillConfig = {
     GoogleSigninDirective,
     TwitterSigninDirective,
     LoginComponent,
+    SanitizeMarkdownPipe
   ],
   imports: [
     QuillModule.forRoot(quillConfig),

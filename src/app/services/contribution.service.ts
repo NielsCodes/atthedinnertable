@@ -15,8 +15,10 @@ export class ContributionService {
   constructor(
     private af: AngularFirestore,
     private afAuth: AngularFireAuth
-    ) {
-    this.contributions$ = this.af.collection<Contribution>('contributions').valueChanges().pipe(shareReplay(1));
+  ) {
+    this.contributions$ = this.af.collection<Contribution>('contributions', ref => ref.orderBy('createdAt'))
+      .valueChanges({ idField: 'id' })
+      .pipe(shareReplay(1));
   }
 
   // Get all contribtions

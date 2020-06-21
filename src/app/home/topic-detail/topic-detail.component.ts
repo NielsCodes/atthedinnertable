@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { sourcesAnimation } from '../../animations/sourcesAnimation';
 
+declare let sharded: any;
+
 @Component({
   selector: 'app-topic-detail',
   templateUrl: './topic-detail.component.html',
@@ -25,7 +27,7 @@ export class TopicDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private topicService: TopicService,
     private router: Router
-  ) { }
+  ) {  }
 
   toggleSources(divName: string) {
     if (divName === 'sources') {
@@ -47,6 +49,12 @@ export class TopicDetailComponent implements OnInit {
         this.router.navigate(['/']);
       }
     });
+
+  }
+
+  onVote(id: string) {
+
+    this.topicService.submitVote(id);
 
   }
 

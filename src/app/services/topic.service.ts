@@ -4,6 +4,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import * as sharded from '../../libraries/sharded-counter';
+import * as firebase from 'firebase';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +15,7 @@ export class TopicService {
   topics$: Observable<Topic[]>;
 
   constructor(private af: AngularFirestore) {
-    this.topics$ = this.af.collection<Topic>('topics').valueChanges().pipe(shareReplay(1));
+    this.topics$ = this.af.collection<Topic>('topics').valueChanges({ idField: 'id' }).pipe(shareReplay(1));
    }
 
   getTopics(): Observable<Topic[]> {
@@ -29,6 +32,15 @@ export class TopicService {
     return this.topics$.pipe(
       map(topics => topics.map(topic => topic.title))
     );
+  }
+
+  submitVote(id: string) {
+
+    const docRef = firebase.firestore().doc(`topics/${id}`);
+
+    const visits = new sharded.Counter(docRef, 'votes');
+    visits.incrementBy(1);
+
   }
 
 }

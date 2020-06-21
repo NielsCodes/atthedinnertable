@@ -31,7 +31,7 @@
   <div class="share-btn">
     <a href="#">Share</a>
   </div>
-  <div class="useful-btn">
-    <a href="#">Useful</a>
+  <div class="useful-btn" *ngIf="(topic$ | async) as topic">
+    <a (click)="onVote(topic.id)">Useful</a>
   </div>
 </div>

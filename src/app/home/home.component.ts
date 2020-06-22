@@ -34,7 +34,9 @@ export class HomeComponent implements OnInit {
     if (routeChild === null) {
       this.title.setTitle(this.defaultTitle);
       this.chosenTopicURL = undefined;
+      console.log('root');
     } else {
+      console.log('detail');
       const url = routeChild.params.url;
 
       this.topicService.getTopicByURL(url)
@@ -56,7 +58,9 @@ export class HomeComponent implements OnInit {
       if (routeChild === null) {
         this.title.setTitle(this.defaultTitle);
         this.chosenTopicURL = undefined;
+        console.log('root');
       } else {
+        console.log('detail');
         const url = routeChild.params.url;
 
         this.topicService.getTopicByURL(url)

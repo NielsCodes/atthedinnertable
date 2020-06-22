@@ -5,15 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Topic } from 'src/models/topic.model';
 import { Observable } from 'rxjs';
 
-import { sourcesAnimation } from '../../animations/sourcesAnimation';
-
-declare let sharded: any;
-
 @Component({
   selector: 'app-topic-detail',
   templateUrl: './topic-detail.component.html',
   styleUrls: ['./topic-detail.component.sass'],
-  animations: [sourcesAnimation]
 })
 export class TopicDetailComponent implements OnInit {
 

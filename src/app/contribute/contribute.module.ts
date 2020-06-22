@@ -1,5 +1,5 @@
-import { SanitizeMarkdownPipe } from './../pipes/sanitize-markdown.pipe';
-import { UrlPipe } from './../pipes/url.pipe';
+import { ContributionUrlPipe } from './../pipes/contribute/contribution-url.pipe';
+import { UrlPipe } from '../pipes/main/url.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -27,7 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { GoogleSigninDirective } from '../directives/google-signin.directive';
 import { TwitterSigninDirective } from '../directives/twitter-signin.directive';
 import { LoginComponent } from './login/login.component';
-import { ContributionMarkdownPipe } from '../pipes/contribution-markdown.pipe';
+import { ContributionMarkdownPipe } from '../pipes/contribute/contribution-markdown.pipe';
 
 const quillConfig = {
   modules: {
@@ -45,7 +45,7 @@ const quillConfig = {
     ContributeDetailComponent,
     SourceInfoComponent,
     TypeInfoComponent,
-    UrlPipe,
+    ContributionUrlPipe,
     GoogleSigninDirective,
     TwitterSigninDirective,
     LoginComponent,

@@ -62,7 +62,7 @@
     <div id="source-list-container">
 
       <div class="source-list-item" *ngFor="let source of sources; let i = index">
-        <span class="source-content" [matTooltip]="source">{{ source | url }}</span>
+        <span class="source-content" [matTooltip]="source">{{ source | contributionUrl }}</span>
         <div
           class="material-icons source-remove-btn"
           matTooltip="Remove source"

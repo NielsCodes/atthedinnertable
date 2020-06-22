@@ -1,4 +1,4 @@
-import { MarkdownPipe } from './pipes/markdown.pipe';
+import { MarkdownPipe } from './pipes/main/markdown.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -23,7 +23,6 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
-import { ContributionMarkdownPipe } from './pipes/contribution-markdown.pipe';
 
 @NgModule({
   declarations: [

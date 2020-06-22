@@ -11,7 +11,6 @@ export class AppComponent {
   constructor(
     private brs: BackRoutingService
   ) {
-    console.log('app running');
     this.brs.initialize();
   }
 

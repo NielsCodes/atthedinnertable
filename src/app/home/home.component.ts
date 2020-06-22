@@ -2,7 +2,7 @@ import { Title } from '@angular/platform-browser';
 import { TopicService } from './../services/topic.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { Topic } from 'src/models/topic.model';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   topics$: Observable<Topic[]>;
-  chosenTopic: string;
+  chosenTopicURL: string;
 
   defaultTitle = 'At The Dinner Table - Some discussions can\'t wait';
 
@@ -33,11 +33,20 @@ export class HomeComponent implements OnInit {
     const routeChild = this.route.snapshot.firstChild;
     if (routeChild === null) {
       this.title.setTitle(this.defaultTitle);
-      this.chosenTopic = undefined;
+      this.chosenTopicURL = undefined;
     } else {
-      const title = routeChild.params.title;
-      this.title.setTitle(title);
-      this.chosenTopic = title;
+      const url = routeChild.params.url;
+
+      this.topicService.getTopicByURL(url)
+        .pipe(
+          first(),
+          map(topic => topic.title)
+          )
+        .toPromise().then(title => {
+          this.title.setTitle(title);
+        });
+
+      this.chosenTopicURL = url;
     }
 
     // Subsequent loads are subscribed to
@@ -46,11 +55,20 @@ export class HomeComponent implements OnInit {
 
       if (childRoute === null) {
         this.title.setTitle(this.defaultTitle);
-        this.chosenTopic = undefined;
+        this.chosenTopicURL = undefined;
       } else {
-        const title = childRoute.params.title;
-        this.title.setTitle(title);
-        this.chosenTopic = title;
+        const url = routeChild.params.url;
+
+        this.topicService.getTopicByURL(url)
+          .pipe(
+            first(),
+            map(topic => topic.title)
+            )
+          .toPromise().then(title => {
+            this.title.setTitle(title);
+          });
+
+        this.chosenTopicURL = url;
       }
 
     });

@@ -1,22 +1,40 @@
 import { Title } from '@angular/platform-browser';
 import { TopicService } from './../services/topic.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
 import { Topic } from 'src/models/topic.model';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 
+import { topicListAnimation, topicDetailAnimation } from '../route-animations';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  styleUrls: ['./home.component.sass'],
+  animations: [
+    topicListAnimation,
+    topicDetailAnimation
+  ]
 })
 export class HomeComponent implements OnInit {
 
+  viewState: string;
+  state: string;
   topics$: Observable<Topic[]>;
   chosenTopicURL: string;
+  windowHeight: number;
+  windowWidth: number;
 
   defaultTitle = 'At The Dinner Table - Some discussions can\'t wait';
+
+  // Watch viewport size for animations
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    this.windowHeight = window.innerHeight;
+    this.windowWidth = window.innerWidth;
+    this.setState();
+  }
 
   constructor(
     private topicService: TopicService,
@@ -25,6 +43,7 @@ export class HomeComponent implements OnInit {
     private title: Title
     ) {
     this.topics$ = this.topicService.getTopics();
+    this.onResize();
   }
 
   ngOnInit(): void {
@@ -34,9 +53,11 @@ export class HomeComponent implements OnInit {
     if (routeChild === null) {
       this.title.setTitle(this.defaultTitle);
       this.chosenTopicURL = undefined;
-      console.log('root');
+      this.state = 'root';
+      this.setState();
     } else {
-      console.log('detail');
+      this.state = 'detail';
+      this.setState();
       const url = routeChild.params.url;
 
       this.topicService.getTopicByURL(url)
@@ -58,9 +79,11 @@ export class HomeComponent implements OnInit {
       if (routeChild === null) {
         this.title.setTitle(this.defaultTitle);
         this.chosenTopicURL = undefined;
-        console.log('root');
+        this.state = 'root';
+        this.setState();
       } else {
-        console.log('detail');
+        this.state = 'detail';
+        this.setState();
         const url = routeChild.params.url;
 
         this.topicService.getTopicByURL(url)
@@ -76,6 +99,21 @@ export class HomeComponent implements OnInit {
       }
 
     });
+
+  }
+
+  setState() {
+
+    const width = this.windowWidth;
+    const state = this.state;
+
+    const mobileCutfoff = 1100;
+
+    if ( width > mobileCutfoff ) {
+      this.viewState = 'desktop';
+    } else {
+      this.viewState = state;
+    }
 
   }
 

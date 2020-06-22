@@ -1,5 +1,5 @@
 <div id="main-content" *ngIf="(topics$ | async) !== null">
-  <ul id="topic-list" [ngClass]="{ disabled: chosenTopicURL !== undefined }">
+  <ul id="topic-list" [ngClass]="{ disabled: chosenTopicURL !== undefined }" [@topicList]="viewState">
     <h2>Browse topics</h2>
     <li
       class="topic-list-item"
@@ -12,7 +12,7 @@
     </li>
   </ul>
 
-  <div id="topic-details" [ngClass]="{ activated: chosenTopicURL !== undefined }">
+  <div id="topic-details" [ngClass]="{ activated: chosenTopicURL !== undefined }" [@topicDetail]="viewState">
     <router-outlet></router-outlet>
   </div>
 </div>

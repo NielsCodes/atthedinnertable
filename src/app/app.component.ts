@@ -11,6 +11,7 @@ export class AppComponent {
   constructor(
     private brs: BackRoutingService
   ) {
+    // Track routing changes to prevent unnecessary router navigations being added to the history state
     this.brs.initialize();
   }
 

@@ -20,6 +20,43 @@
     padding-right: 40px
     overflow: hidden
 
+    li
+      padding: 15px 45px 15px 15px
+      border-top: 2px solid rgba($gray, .3)
+      outline: none !important
+      transition: all .2s ease
+
+      &.highlight
+        color: $yellow
+        background-color: rgba($darkgray, 0.7)
+
+      i
+        transition: color .2s ease
+        user-select: none
+        color: $yellow
+        position: relative
+        right: -35px
+        font-size: 1.5em
+
+      &:hover
+        cursor: pointer
+        background-color: $darkgray
+        color: $yellow
+
+      .contribution-type
+        font-size: 0.7em
+        padding-bottom: 5px
+        text-transform: capitalize
+        color: $gray
+
+      .contribution-topic
+        font-size: 1.2em
+        font-weight:  $bold
+
+      .contribution-votes
+        font-size: 0.8em
+        padding-top: 5px
+
     @media (screen and max-width: $res-s)
       width: 100%
       min-width: 100%
@@ -29,6 +66,34 @@
         width: 0% !important
         min-width: 0% !important
         padding: 0
+
+
+    #contribute-btn
+      color: black
+      background-color: $yellow
+      border: 5px solid $yellow
+      cursor: pointer
+      display: block
+      font-size: 1em
+      font-weight: $extrabold
+      padding: 10px 20px
+      text-align: center
+      text-transform: uppercase
+      text-decoration: none
+      transition: all .2s ease
+      cursor: pointer
+      user-select: none
+      width: 50%
+
+      &:hover
+        background-color: white
+        border: 5px solid white
+
+      @media (screen and max-width: $res-s)
+        width: 100%
+
+  h2
+    padding: 30px 15px
 
   #detail-section
     width: 60%

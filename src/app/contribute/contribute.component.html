@@ -2,7 +2,7 @@
   <!-- List view of recently added resources -->
   <ul id="contribution-list">
 
-    <button [routerLink]="['/contribute/edit']">CONTRIBUTE</button>
+    <button id="contribute-btn" [routerLink]="['/contribute/edit']">CONTRIBUTE</button>
 
     <h2>Recent contributions</h2>
     <li
@@ -10,11 +10,10 @@
       *ngFor="let contribution of contributions$ | async"
       [routerLink]="['/contribute', contribution.id]"
     >
-      <h4 class="contribution-type">{{ contribution.type }}</h4>
+      <p class="contribution-type">{{ contribution.type }}</p>
       <h3 class="contribution-topic">{{ contribution.topic }}</h3>
-      <h3 class="contribution-topic">
-        {{ (contribution.content | sanitizeMarkdown | slice: 0:24) + "..." }}
-      </h3>
+      <p class="contribution-text">{{ (contribution.content | sanitizeMarkdown | slice: 0:24) + "..." }}</p>
+      <p class="contribution-votes">523 votes</p>
 
       <!-- <i class="material-icons">keyboard_arrow_right</i> -->
     </li>

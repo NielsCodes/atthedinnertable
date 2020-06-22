@@ -37,9 +37,7 @@ export class TopicDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const url = params.get('url');
-
       this.topic$ = this.topicService.getTopicByURL(url);
-
     });
 
     this.topic$.subscribe(topic => {
@@ -63,6 +61,26 @@ export class TopicDetailComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       this.location.back();
+    }
+
+  }
+
+  onShare(title: string, url: string) {
+
+    const nav: any = window.navigator;
+
+    const shareData = {
+      title: 'At The Dinner Table',
+      text: title,
+      url: this.router.url
+    };
+
+    if (nav && nav.share) {
+
+      nav.share(shareData);
+
+    } else {
+      // Show share pop-up
     }
 
   }

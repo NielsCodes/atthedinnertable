@@ -27,11 +27,11 @@
   </div>
 </div>
 
-<div id="btn-container">
-  <div class="share-btn">
-    <a href="#">Share</a>
+<div id="btn-container" *ngIf="(topic$ | async) as topic">
+  <div class="share-btn" (click)="onShare(topic.title, topic.url)">
+    <a>Share</a>
   </div>
-  <div class="useful-btn" *ngIf="(topic$ | async) as topic">
+  <div class="useful-btn">
     <a (click)="onVote(topic.id)">Useful</a>
   </div>
 </div>

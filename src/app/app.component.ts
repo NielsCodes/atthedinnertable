@@ -1,3 +1,4 @@
+import { BackRoutingService } from './services/back-routing.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() {}
+  constructor(
+    private brs: BackRoutingService
+  ) {
+    console.log('app running');
+    this.brs.initialize();
+  }
 
 }

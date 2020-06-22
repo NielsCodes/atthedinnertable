@@ -1,5 +1,5 @@
-<div id="topic-detail-controls" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined">
-  <i class="material-icons" id="back-btn" [routerLink]="['/']">arrow_back_ios</i>
+<div id="topic-detail-controls" *ngIf="(topic$ | async) !== null && (topic$ | async) !== undefined" (click)="onNavigateBack()">
+  <i class="material-icons" id="back-btn">arrow_back_ios</i>
   <h2 id="title">Back to overview</h2>
 </div>
 

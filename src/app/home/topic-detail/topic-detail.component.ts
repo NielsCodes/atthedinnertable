@@ -1,9 +1,11 @@
+import { BackRoutingService } from './../../services/back-routing.service';
 import { TopicService } from './../../services/topic.service';
 import { take, filter, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Topic } from 'src/models/topic.model';
 import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-topic-detail',
@@ -16,12 +18,14 @@ export class TopicDetailComponent implements OnInit {
 
   animationState = 'out';
 
-  // isShowSources = true;
+  isShowSources = true;
 
   constructor(
     private route: ActivatedRoute,
     private topicService: TopicService,
-    private router: Router
+    private router: Router,
+    private brs: BackRoutingService,
+    private location: Location
   ) {  }
 
   toggleSources(divName: string) {
@@ -49,6 +53,18 @@ export class TopicDetailComponent implements OnInit {
 
   onVote(id: string) {
     this.topicService.submitVote(id);
+  }
+
+  onNavigateBack() {
+
+    const previousUrl = this.brs.getPreviousUrl();
+
+    if (previousUrl === undefined) {
+      this.router.navigate(['/']);
+    } else {
+      this.location.back();
+    }
+
   }
 
 }

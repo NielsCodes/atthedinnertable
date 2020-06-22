@@ -1,5 +1,5 @@
+import { SanitizeMarkdownPipe } from './../pipes/contribute/sanitize-markdown.pipe';
 import { ContributionUrlPipe } from './../pipes/contribute/contribution-url.pipe';
-import { UrlPipe } from '../pipes/main/url.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

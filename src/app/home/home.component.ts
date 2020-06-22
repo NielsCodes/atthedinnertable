@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     // On first load: check for title parameter
-    const routeChild = this.route.snapshot.firstChild;
+    let routeChild = this.route.snapshot.firstChild;
     if (routeChild === null) {
       this.title.setTitle(this.defaultTitle);
       this.chosenTopicURL = undefined;
@@ -51,9 +51,9 @@ export class HomeComponent implements OnInit {
 
     // Subsequent loads are subscribed to
     this.router.events.pipe(filter(event => event instanceof RoutesRecognized)).subscribe((event: RoutesRecognized) => {
-      const childRoute = event.state.root.firstChild.firstChild;
+      routeChild = event.state.root.firstChild.firstChild;
 
-      if (childRoute === null) {
+      if (routeChild === null) {
         this.title.setTitle(this.defaultTitle);
         this.chosenTopicURL = undefined;
       } else {

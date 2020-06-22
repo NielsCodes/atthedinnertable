@@ -30,6 +30,12 @@ export class TopicService {
     );
   }
 
+  getTopicByURL(url: string): Observable<Topic | undefined> {
+    return this.topics$.pipe(
+      map(topics => topics.find(topic => topic.url === url)), defaultIfEmpty(undefined)
+    );
+  }
+
   getTopicTitles(): Observable<string[]> {
     return this.topics$.pipe(
       map(topics => topics.map(topic => topic.title))

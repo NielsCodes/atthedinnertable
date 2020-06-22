@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '', component: HomeComponent, children: [
-      { path: ':title', component: TopicDetailComponent }
+      { path: ':url', component: TopicDetailComponent }
     ]
   },
 ];

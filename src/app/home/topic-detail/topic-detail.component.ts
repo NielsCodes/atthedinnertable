@@ -36,9 +36,9 @@ export class TopicDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const title = params.get('title');
+      const url = params.get('url');
 
-      this.topic$ = this.topicService.getTopic(title);
+      this.topic$ = this.topicService.getTopicByURL(url);
 
     });
 

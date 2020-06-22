@@ -4,7 +4,7 @@
     <li
       class="topic-list-item"
       *ngFor="let topic of topics$ | async"
-      [routerLink]="['/', topic.title]"
+      [routerLink]="['/', topic.url]"
       [ngClass]="{ highlight: chosenTopic === topic.title }"
     >
       <span>{{ topic.title }}</span>

@@ -3,4 +3,6 @@ export interface Topic {
   title: string;
   message: string;
   votes: number;
+  shares: number;
+  url: string;
 }

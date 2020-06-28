@@ -6,7 +6,7 @@
 </div>
 <div class="cont-row sources-title">
   <p><span>Sources:</span> </p>
-  <a class="cont-sources" *ngFor="let source of (contribution$ | async)?.sources" href="{{ source }}"><i class="material-icons url-icon">link</i> {{ source }}</a>
+  <a class="cont-sources" *ngFor="let source of (contribution$ | async)?.sources" href="{{ source }}"><i class="material-icons url-icon">link</i> {{ source | contributionUrl }}</a>
 </div>
 
 

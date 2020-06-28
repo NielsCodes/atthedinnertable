@@ -1,6 +1,6 @@
 <div id="main-content" *ngIf="(contributions$ | async) !== null">
   <!-- List view of recently added resources -->
-  <ul id="contribution-list" [ngClass]="{ disabled: chosenContributionID !== undefined }" [@topicList]="viewState">
+  <ul id="contribution-list" [ngClass]="{ disabled: chosenContributionID !== undefined }" [@contributeList]="viewState">
 
     <button id="contribute-btn" [routerLink]="['/contribute/edit']">CONTRIBUTE</button>
 
@@ -21,7 +21,7 @@
 
   <!-- Router outlet -->
   <!-- Shows either the selected resource or the editor/login page -->
-  <div id="detail-section" [ngClass]="{ activated: chosenContributionID !== undefined }" [@topicList]="viewState">
+  <div id="detail-section" [ngClass]="{ activated: chosenContributionID !== undefined }" [@contributeDetail]="viewState">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { topicDetailAnimation } from './../route-animations';
+import { contributeListAnimation, contributeDetailAnimation } from './../route-animations';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContributionService } from './../services/contribution.service';
@@ -6,15 +6,14 @@ import { Component, OnInit } from '@angular/core';
 import { Contribution } from 'src/models/contribution.model';
 import { Title } from '@angular/platform-browser';
 import { filter, first, map } from 'rxjs/operators';
-import { topicListAnimation } from '../route-animations';
 
 @Component({
   selector: 'app-contribute',
   templateUrl: './contribute.component.html',
   styleUrls: ['./contribute.component.sass'],
   animations: [
-    topicListAnimation,
-    topicDetailAnimation
+    contributeListAnimation,
+    contributeDetailAnimation
   ]
 })
 export class ContributeComponent implements OnInit {

@@ -12,8 +12,8 @@
     >
       <p class="contribution-type">{{ contribution.type }}</p>
       <h3 class="contribution-topic">{{ contribution.topic }}</h3>
-      <p class="contribution-text">{{ (contribution.content | sanitizeMarkdown | slice: 0:24) + "..." }}</p>
-      <p class="contribution-votes">523 votes</p>
+      <p class="contribution-text">{{ (contribution.content | sanitizeMarkdown | slice: 0:50) + "..." }}</p>
+      <p class="contribution-votes">{{ contribution.votes }}</p>
 
       <!-- <i class="material-icons">keyboard_arrow_right</i> -->
     </li>

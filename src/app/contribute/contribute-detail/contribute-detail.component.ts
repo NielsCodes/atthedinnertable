@@ -23,7 +23,6 @@ export class ContributeDetailComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      console.log('Detail id', id);
       this.contribution$ = this.contributionService.getContribution(id);
     });
 

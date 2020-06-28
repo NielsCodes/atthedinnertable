@@ -2,7 +2,7 @@ import { contributeListAnimation, contributeDetailAnimation } from './../route-a
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContributionService } from './../services/contribution.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Contribution } from 'src/models/contribution.model';
 import { Title } from '@angular/platform-browser';
 import { filter, first, map } from 'rxjs/operators';
@@ -27,6 +27,13 @@ export class ContributeComponent implements OnInit {
 
   defaultTitle = 'At The Dinner Table - Some discussions can\'t wait';
 
+  // Watch viewport size for animations
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    this.windowWidth = window.innerWidth;
+    this.setState();
+  }
+
   constructor(
     private contributionService: ContributionService,
     private route: ActivatedRoute,
@@ -34,6 +41,7 @@ export class ContributeComponent implements OnInit {
     private title: Title
   ) {
     this.contributions$ = this.contributionService.getContributions();
+    this.onResize();
   }
 
   ngOnInit(): void {
@@ -75,8 +83,6 @@ export class ContributeComponent implements OnInit {
         this.state = 'detail';
         this.setState();
         const id = routeChild.params.id;
-
-        console.log(`id: ${id}`);
 
         this.contributionService.getContribution(id)
           .pipe(

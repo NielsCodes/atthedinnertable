@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
   state: string;
   topics$: Observable<Topic[]>;
   chosenTopicURL: string;
-  windowHeight: number;
   windowWidth: number;
 
   defaultTitle = 'At The Dinner Table - Some discussions can\'t wait';
@@ -31,7 +30,6 @@ export class HomeComponent implements OnInit {
   // Watch viewport size for animations
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    this.windowHeight = window.innerHeight;
     this.windowWidth = window.innerWidth;
     this.setState();
   }

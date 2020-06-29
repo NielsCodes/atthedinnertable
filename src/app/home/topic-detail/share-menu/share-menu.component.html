@@ -1,0 +1,6 @@
+<textarea [(ngModel)]="shareData.url"></textarea>
+
+<mat-dialog-actions>
+  <button mat-button color="primary" [cdkCopyToClipboard]="shareData.url">Copy to clipboard</button>
+  <button mat-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

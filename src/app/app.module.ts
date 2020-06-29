@@ -1,6 +1,10 @@
 import { MarkdownPipe } from './pipes/main/markdown.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +28,9 @@ import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
 import { AboutComponent } from './about/about.component';
+import { ShareMenuComponent } from './home/topic-detail/share-menu/share-menu.component';
+
+
 
 @NgModule({
   declarations: [
@@ -36,6 +43,7 @@ import { AboutComponent } from './about/about.component';
     TopicDetailComponent,
     MarkdownPipe,
     AboutComponent,
+    ShareMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +53,9 @@ import { AboutComponent } from './about/about.component';
     AngularFireAnalyticsModule,
     AngularFirePerformanceModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    FormsModule,
+    ClipboardModule
   ],
   providers: [
     PerformanceMonitoringService

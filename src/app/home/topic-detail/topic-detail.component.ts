@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Topic } from 'src/models/topic.model';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ShareMenuComponent } from './share-menu/share-menu.component';
 
 @Component({
   selector: 'app-topic-detail',
@@ -21,11 +23,12 @@ export class TopicDetailComponent implements OnInit {
   isShowSources = true;
 
   constructor(
+    private dialog: MatDialog,
     private route: ActivatedRoute,
     private topicService: TopicService,
     private router: Router,
     private brs: BackRoutingService,
-    private location: Location
+    private location: Location,
   ) {  }
 
   toggleSources(divName: string) {
@@ -80,9 +83,11 @@ export class TopicDetailComponent implements OnInit {
       nav.share(shareData);
 
     } else {
-      // Show share pop-up
+        // Show type info dialog
+        this.dialog.open(ShareMenuComponent, {
+          width: '400px'
+        });
     }
-
   }
 
 }

@@ -23,6 +23,7 @@ import { FooterComponent } from './elements/footer/footer.component';
 import { BmcComponent } from './elements/bmc/bmc.component';
 import { TweetComponent } from './elements/tweet/tweet.component';
 import { TopicDetailComponent } from './home/topic-detail/topic-detail.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TopicDetailComponent } from './home/topic-detail/topic-detail.component
     TweetComponent,
     TopicDetailComponent,
     MarkdownPipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

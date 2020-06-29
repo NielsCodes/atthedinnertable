@@ -21,7 +21,7 @@
     <!-- Internal page links -->
     <a (click)="onLogout()" *ngIf="afAuth.authState | async">Logout</a>
     <a [routerLink]="['/contribute']" class="page-link">Contribute</a>
-    <a href="" class="page-link">About</a>
+    <a [routerLink]="['/about']" class="page-link">About</a>
     <a href="" class="page-link">Privacy Policy</a>
   </div>
 </footer>

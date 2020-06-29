@@ -1,36 +1,70 @@
 @import ../../../vars
 
-span
-    font-weight: bold
 
-.cont-row
-  display: block
-  padding: 5px 0
-  margin: 5px 0
-  border-bottom: 2px solid rgba($gray, .3)
+#title
+  cursor: pointer
 
-  &:first-child
-    text-transform: capitalize
-
-  &.content-title, &.sources-title
-    p
-      padding-bottom: 10px
-
-
-.cont-sources
-  color: $gray
-  text-decoration: none
-  font-weight: $bold
+#contribute-detail-controls
   display: flex
   align-items: center
-  transition: .2s ease all
+  padding: 20px 0
+  border-bottom: 2px solid rgba($gray, .3)
+  position: sticky
+  top: 0
+  background: black
+  display: none
+  z-index: 1
 
-  i
-    transform: rotate(-45deg)
-    padding-right: 3px
+  @media (screen and max-width: $res-s)
+    display: flex
+    margin-top: -20px
 
-  &:hover
-    color: white
+  #back-btn
+    margin: 0 10px
+    color: $yellow
+    transition: all .2s ease
+    user-select: none
+    outline: none !important
+    -webkit-tap-highlight-color: transparent
+
+    &:hover
+      color: #fff
+      cursor: pointer
+
+#contribution-content
+  margin: 20px 0
+
+  span
+      font-weight: bold
+
+  .cont-row
+    display: block
+    padding: 5px 0
+    margin: 5px 0
+    border-bottom: 2px solid rgba($gray, .3)
+
+    &:first-child
+      text-transform: capitalize
+
+    &.content-title, &.sources-title
+      p
+        padding-bottom: 10px
+
+
+  .cont-sources
+    color: $gray
+    text-decoration: none
+    font-weight: $bold
+    display: flex
+    align-items: center
+    transition: .2s ease all
+
+    i
+      transform: rotate(-45deg)
+      padding-right: 3px
+
+    &:hover
+      color: white
 
 
 .vote-btn
@@ -49,6 +83,7 @@ span
   transition: all .2s ease
   cursor: pointer
   user-select: none
+  line-height: 1.6em
 
   @media (screen and max-width: $res-s)
       width: 100%

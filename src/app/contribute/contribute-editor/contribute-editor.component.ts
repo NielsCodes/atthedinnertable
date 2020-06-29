@@ -9,6 +9,9 @@ import { QuillEditorComponent } from 'ngx-quill';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Contribution } from 'src/models/contribution.model';
+import { Location } from '@angular/common';
+import { BackRoutingService } from './../../services/back-routing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contribute-editor',
@@ -32,7 +35,10 @@ export class ContributeEditorComponent implements OnInit {
     private dialog: MatDialog,
     private topicService: TopicService,
     public afAuth: AngularFireAuth,
-    private contributionService: ContributionService
+    private contributionService: ContributionService,
+    private router: Router,
+    private brs: BackRoutingService,
+    private location: Location
   ) {
 
     // Create form
@@ -57,6 +63,18 @@ export class ContributeEditorComponent implements OnInit {
     this.editor.onContentChanged.subscribe(data => {
       this.wordcount = data.text.trim().length;
     });
+
+  }
+
+  onNavigateBack() {
+
+    const previousUrl = this.brs.getPreviousUrl();
+
+    if (previousUrl === undefined) {
+      this.router.navigate(['/']);
+    } else {
+      this.location.back();
+    }
 
   }
 

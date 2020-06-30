@@ -13,7 +13,7 @@ export class ShareMenuComponent implements OnInit {
   ) {  }
 
   shareData = {
-    url: this.router.url
+    url: 'https://atthedinnertable.co' + this.router.url
   };
 
   ngOnInit(): void {
